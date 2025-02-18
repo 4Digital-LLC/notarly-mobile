@@ -6,6 +6,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
 import { BackIcon } from '@/utils/icons';
+import useColorsBeta from '@/hooks/useColorsBeta';
+import { Colors } from '../theme/[new]/colors';
+import { INTER_MEDIUM } from '@/theme/typography';
 
 interface HeaderProps {
   leftComponent?: ReactNode;
@@ -38,6 +41,7 @@ const Header: FC<HeaderProps> = ({
 }) => {
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
+  const _colors = useColorsBeta();
 
   return (
     <View
@@ -51,9 +55,14 @@ const Header: FC<HeaderProps> = ({
           ? 'transparent'
           : backgroundColor
           ? backgroundColor
-          : '#ffff90',
+          : _colors.scheme == 'light'
+          ? _colors.background.primary
+          : _colors.background.secondary,
         borderBottomWidth: disabledBorder ? 0 : 1,
-        borderBottomColor: '#ff00ff',
+        borderBottomColor:
+          _colors.scheme == 'light'
+            ? _colors.border.primary
+            : _colors.background.secondary,
         height: modal && Platform.OS == 'ios' ? RH(6) : insets.top + RH(5.5),
       }}
     >
@@ -79,7 +88,7 @@ const Header: FC<HeaderProps> = ({
           leftComponent
         ) : (
           <BackIcon
-            color={colorScheme === 'light' ? 'red' : 'blue'}
+            color={_colors.scheme == 'light' ? _colors.primary : Colors.white}
             height={RH(1.7)}
             width={RH(1.7)}
           />
@@ -92,9 +101,9 @@ const Header: FC<HeaderProps> = ({
           <Text
             numberOfLines={1}
             style={{
-              // fontFamily: INTER_MEDIUM,
+              fontFamily: INTER_MEDIUM,
               fontSize: RH(1.7),
-              color: '#000',
+              color: _colors.text.primary,
               textAlign: 'center',
             }}
           >
