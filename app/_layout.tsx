@@ -12,6 +12,9 @@ import 'react-native-reanimated';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { AuthProvider } from '@/context/auth.context';
+import ToastProvider from '@/context/toast.context';
+import AppRoutes from './routes';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -48,15 +51,17 @@ export default function RootLayout() {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="auth" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
-    </QueryClientProvider>
+    <AuthProvider>
+      <ToastProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider
+            value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+          >
+            <AppRoutes />
+            <StatusBar style="auto" />
+          </ThemeProvider>
+        </QueryClientProvider>
+      </ToastProvider>
+    </AuthProvider>
   );
 }

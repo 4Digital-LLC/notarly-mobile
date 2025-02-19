@@ -151,58 +151,58 @@ const Input = ({
             for (let i = 0; i < validations.length; i++) {
               if (validations[i] == 'required') {
                 if (value.length == 0) {
-                  setError(`${label} est obligatoire`);
+                  setError(`${label} is required`);
                   break;
                 } else {
                   setError('');
                 }
               } else if (validations[i] == 'email') {
                 if (!isEmail(value)) {
-                  setError(`Le format d'email est incorrect`);
+                  setError(`Invalid email format`);
                   break;
                 } else {
                   setError('');
                 }
               } else if (validations[i] == 'alphabetical') {
                 if (!isAlphabetical(value)) {
-                  setError(`${label} doit être alphabétique`);
+                  setError(`${label} must be alphabetical`);
                   break;
                 } else {
                   setError('');
                 }
               } else if (validations[i] == 'url') {
                 if (!isUrl(value)) {
-                  setError(`${label} doit être un URL valide`);
+                  setError(`${label} must be a valid URL`);
                   break;
                 } else {
                   setError('');
                 }
               } else if (validations[i] == 'min') {
                 if (value.length < min) {
-                  setError(
-                    `${label} doit contenir au moins ${min} charactéres`,
-                  );
+                  setError(`${label} should contain atleast ${min} characters`);
                   break;
                 } else {
                   setError('');
                 }
               } else if (validations[i] == 'max') {
                 if (value.length > max) {
-                  setError(`${label} doit être supérieur à ${max} characters`);
+                  setError(
+                    `${label} should contain lower than ${max} characters`,
+                  );
                   break;
                 } else {
                   setError('');
                 }
               } else if (validations[i] == 'number') {
                 if (isNaN(value as any)) {
-                  setError(`${label} doit être numérique`);
+                  setError(`${label} must be a number`);
                   break;
                 } else {
                   setError('');
                 }
               } else if (validations[i] == 'equal') {
                 if (value.length != equal) {
-                  setError(`${label} doit contenir ${equal} chiffres`);
+                  setError(`${label} should contain ${equal} numbers`);
                   break;
                 } else {
                   setError('');

@@ -21,13 +21,14 @@ export default function HomeScreen() {
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
       </ThemedView>
-      <Link href="/auth/login">Login</Link>
-      <Link href="/auth/register">Register</Link>
+      <Link href="/(auth)">Login</Link>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
-          Edit{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{' '}
+          Edit
+          <ThemedText type="defaultSemiBold">
+            app/(tabs)/index.tsx
+          </ThemedText>{' '}
           to see changes. Press{' '}
           <ThemedText type="defaultSemiBold">
             {Platform.select({
