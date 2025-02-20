@@ -8,6 +8,7 @@ export default function AuthLayout() {
       <Stack.Screen
         name="index"
         options={{
+          title: 'Login',
           header: () => <Header label="Connection" leftComponent />,
         }}
       />

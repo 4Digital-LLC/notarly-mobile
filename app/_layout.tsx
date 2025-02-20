@@ -4,7 +4,6 @@ import {
   ThemeProvider,
 } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
@@ -14,7 +13,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { AuthProvider } from '@/context/auth.context';
 import ToastProvider from '@/context/toast.context';
-import AppRoutes from './routes';
+import AppRoutes from '../routes/routes';
+import { Slot } from 'expo-router';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -57,7 +57,8 @@ export default function RootLayout() {
           <ThemeProvider
             value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
           >
-            <AppRoutes />
+            {/* <AppRoutes /> */}
+            <Slot />
             <StatusBar style="auto" />
           </ThemeProvider>
         </QueryClientProvider>

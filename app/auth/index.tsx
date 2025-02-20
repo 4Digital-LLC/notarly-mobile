@@ -33,7 +33,6 @@ const Login = () => {
 
   const { mutate, isLoading, error } = useMutation(postLogin, {
     onSuccess: (res) => {
-      console.log('res *_*_*_*_*_*', res.data);
       if (res.data.emailVerifiedAt) {
         login({
           token: res.data.token,
@@ -43,7 +42,7 @@ const Login = () => {
             email: res.data.email,
           },
         });
-        // router.navigat
+        router.replace(res.data.role === 'client' ? '/client' : '/admin');
       } else {
         showToast('Email is not virified', 'error');
       }
@@ -140,7 +139,7 @@ const Login = () => {
       >
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => router.navigate('/(auth)/forgotPassword')}
+          onPress={() => router.navigate('/auth/forgotPassword')}
         >
           <Text
             style={{

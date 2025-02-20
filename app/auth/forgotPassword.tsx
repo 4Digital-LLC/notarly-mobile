@@ -76,7 +76,7 @@ const ForgotPassword = () => {
       >
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => router.navigate('/auth/login')}
+          onPress={() => router.navigate('/auth')}
         >
           <Text
             style={{
