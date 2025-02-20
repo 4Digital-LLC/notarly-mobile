@@ -1,23 +1,23 @@
 import Header from '@/components/header';
 import { useAuth } from '@/hooks/useAuth';
-import { Redirect, Slot, Stack } from 'expo-router';
+import { Redirect, Stack } from 'expo-router';
 import React from 'react';
 
 export default function AdminLayout() {
   const { auth } = useAuth();
 
   if (!auth) {
-    return <Redirect href="/auth" />;
+    return <Redirect href="/" />;
   }
-  if (auth && auth.role === 'client') {
-    return <Redirect href="/client" />;
+  if (auth.role === 'client') {
+    return <Redirect href="/(client)/home" />;
   }
 
   return (
     // <Slot />
     <Stack>
       <Stack.Screen
-        name="index"
+        name="home"
         options={{
           header: () => <Header label="Admin Home" leftComponent />,
         }}

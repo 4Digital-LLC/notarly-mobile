@@ -7,17 +7,17 @@ export default function ClientLayout() {
   const { auth } = useAuth();
 
   if (!auth) {
-    return <Redirect href="/auth" />;
+    return <Redirect href="/(auth)/login" />;
   }
   if (auth && auth.role !== 'client') {
-    return <Redirect href="/admin" />;
+    return <Redirect href="/(admin)/home" />;
   }
 
   return (
     // <Slot />
     <Stack>
       <Stack.Screen
-        name="index"
+        name="home"
         options={{
           title: 'Home',
           header: () => <Header label="Client Home" leftComponent />,

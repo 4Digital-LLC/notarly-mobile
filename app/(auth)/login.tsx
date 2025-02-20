@@ -42,7 +42,9 @@ const Login = () => {
             email: res.data.email,
           },
         });
-        router.replace(res.data.role === 'client' ? '/client' : '/admin');
+        router.replace(
+          res.data.role === 'client' ? '/(client)/home' : '/(admin)/home',
+        );
       } else {
         showToast('Email is not virified', 'error');
       }
@@ -139,7 +141,7 @@ const Login = () => {
       >
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => router.navigate('/auth/forgotPassword')}
+          onPress={() => router.navigate('/(auth)/forgotPassword')}
         >
           <Text
             style={{

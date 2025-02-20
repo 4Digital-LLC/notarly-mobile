@@ -6,8 +6,12 @@ export default function Index() {
   const { auth } = useAuth();
 
   if (!auth) {
-    return <Redirect href="/auth" />;
+    return <Redirect href="/(auth)/login" />;
   }
 
-  return <Redirect href={auth.role === 'client' ? '/client' : '/admin'} />;
+  return (
+    <Redirect
+      href={auth.role === 'client' ? '/(client)/home' : '/(admin)/home'}
+    />
+  );
 }
